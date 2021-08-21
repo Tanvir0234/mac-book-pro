@@ -44,8 +44,9 @@ document.getElementById('promo-btn').addEventListener('click',function(){
     
     if(document.getElementById('promo-input').value == 'stevekaku'){
         const finalTotal = document.getElementById('final-total');
-        finalTotal.innerText = parseInt(finalTotal.innerText);
-        finalTotal.innerText = parseFloat(calc())*0.8;
+        finalTotal.innerText = parseFloat(finalTotal.innerText);
+        finalTotal.innerText = parseFloat(calc()*0.8);
+        
     }
     
     document.getElementById('promo-input').value = '';
@@ -54,9 +55,9 @@ document.getElementById('promo-btn').addEventListener('click',function(){
 //---------Cost releted function---------
 function cost(item,price){
     const productCost = document.getElementById(item+'-cost');
-    productCost.innerText = parseInt(productCost.innerText) ;
+    productCost.innerText = parseFloat(productCost.innerText) ;
     let  lowCost = 0;
-    productCost.innerText = lowCost + price; 
+    productCost.innerText =parseFloat(lowCost + price) ; 
     calc();
     finalTotal();
 }
@@ -64,24 +65,25 @@ function cost(item,price){
 //------------------------delivery function----------------
 function deliveryProduct(price){
     const deliveryCost = document.getElementById('delivery-cost');
-    deliveryCost.innerText = parseInt(deliveryCost.innerText) ;
+    deliveryCost.innerText = parseFloat(deliveryCost.innerText) ;
     let freeCost = 0 ;
-    deliveryCost.innerText = freeCost + price;
+    deliveryCost.innerText =parseFloat(freeCost + price);
     calc();
     finalTotal();
 }
 
 //----------------------- Calculation-----------
 function calc(){
-const bestprice =parseInt(document.getElementById('best-price').innerText);
-const extraMemoryCost =parseInt(document.getElementById('memory-cost').innerText);
-const extraStorageCost =parseInt(document.getElementById('storage-cost').innerText);
-const deliveryCost =parseInt(document.getElementById('delivery-cost').innerText);
+const bestprice =parseFloat(document.getElementById('best-price').innerText);
+const extraMemoryCost =parseFloat(document.getElementById('memory-cost').innerText);
+const extraStorageCost =parseFloat(document.getElementById('storage-cost').innerText);
+const deliveryCost =parseFloat(document.getElementById('delivery-cost').innerText);
 let totalPrice =document.getElementById('total-price');
-return totalPrice.innerText= bestprice+extraMemoryCost+extraStorageCost+deliveryCost;
+return totalPrice.innerText=parseFloat(bestprice+extraMemoryCost+extraStorageCost+deliveryCost) ;
 }
+//-----------------------footer Final Calculation-----------
 function finalTotal(){
     const finalTotal = document.getElementById('final-total');
-    finalTotal.innerText = parseInt(finalTotal.innerText);
-    return finalTotal.innerText = calc();
+    finalTotal.innerText = parseFloat(finalTotal.innerText);
+    return finalTotal.innerText = parseFloat(calc()) ;
 }
