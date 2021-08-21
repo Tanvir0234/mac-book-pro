@@ -41,11 +41,11 @@ document.getElementById('free-delivery').addEventListener('click',function(){
 //-------------------footer Total part---------------------------
 document.getElementById('promo-btn').addEventListener('click',function(){
     const promoInput = document.getElementById('promo-input').value;
-    //document.getElementById('promo-input').value = 'stevekaku';
+    
     if(document.getElementById('promo-input').value == 'stevekaku'){
         const finalTotal = document.getElementById('final-total');
         finalTotal.innerText = parseInt(finalTotal.innerText);
-        finalTotal.innerText = calc() / 20;
+        finalTotal.innerText = parseFloat(calc())*0.8;
     }
     
     document.getElementById('promo-input').value = '';
@@ -58,6 +58,7 @@ function cost(item,price){
     let  lowCost = 0;
     productCost.innerText = lowCost + price; 
     calc();
+    finalTotal();
 }
 
 //------------------------delivery function----------------
@@ -67,7 +68,7 @@ function deliveryProduct(price){
     let freeCost = 0 ;
     deliveryCost.innerText = freeCost + price;
     calc();
-    
+    finalTotal();
 }
 
 //----------------------- Calculation-----------
@@ -78,4 +79,9 @@ const extraStorageCost =parseInt(document.getElementById('storage-cost').innerTe
 const deliveryCost =parseInt(document.getElementById('delivery-cost').innerText);
 let totalPrice =document.getElementById('total-price');
 return totalPrice.innerText= bestprice+extraMemoryCost+extraStorageCost+deliveryCost;
+}
+function finalTotal(){
+    const finalTotal = document.getElementById('final-total');
+    finalTotal.innerText = parseInt(finalTotal.innerText);
+    return finalTotal.innerText = calc();
 }
