@@ -1,33 +1,31 @@
-//--------------------------------------$180 related part-------------------------------
+//------------------$180 related part---------------------------
 document.getElementById('memory-16gb').addEventListener('click',function(){
 
-    cost180('memory');
+    cost('memory',180);
 
 })
 document.getElementById('1tb-ssd').addEventListener('click',function(){
 
-    cost180('storage');
+    cost('storage',180);
 
 })
 //-----------------$0 related part -----------------------
 document.getElementById('memory-8gb').addEventListener('click',function(){
 
-     cost0('memory');
+     cost('memory',0);
 
 })
 
 document.getElementById('256gb-ssd').addEventListener('click',function(){
 
-    cost0('storage');
+    cost('storage',0);
 
 })
 
 //------------------$100 related part-------
 document.getElementById('512gb-ssd').addEventListener('click',function(){
-    const midiumGbCost = document.getElementById('storage-cost');
-    midiumGbCost.innerText = parseInt(midiumGbCost.innerText) ;
-    midiumGbCost.innerText = 100;
-    calc();
+   
+   cost('storage',100)
 })
 //---------------------delivery part------------------------------
 document.getElementById('pay-delivery').addEventListener('click',function(){
@@ -40,14 +38,26 @@ document.getElementById('free-delivery').addEventListener('click',function(){
     deliveryProduct(0);
     
 })
-//----------------------- Calculation-----------
-function calc(){
-const bestprice =parseInt(document.getElementById('best-price').innerText);
-const extraMemoryCost =parseInt(document.getElementById('memory-cost').innerText);
-const extraStorageCost =parseInt(document.getElementById('storage-cost').innerText);
-const deliveryCost =parseInt(document.getElementById('delivery-cost').innerText);
-let totalPrice =document.getElementById('total-price');
-return totalPrice.innerText= bestprice+extraMemoryCost+extraStorageCost+deliveryCost;
+//-------------------footer Total part---------------------------
+document.getElementById('promo-btn').addEventListener('click',function(){
+    const promoInput = document.getElementById('promo-input').value;
+    //document.getElementById('promo-input').value = 'stevekaku';
+    if(document.getElementById('promo-input').value == 'stevekaku'){
+        const finalTotal = document.getElementById('final-total');
+        finalTotal.innerText = parseInt(finalTotal.innerText);
+        finalTotal.innerText = calc() / 20;
+    }
+    
+    document.getElementById('promo-input').value = '';
+})
+
+//---------Cost releted function---------
+function cost(item,price){
+    const productCost = document.getElementById(item+'-cost');
+    productCost.innerText = parseInt(productCost.innerText) ;
+    let  lowCost = 0;
+    productCost.innerText = lowCost + price; 
+    calc();
 }
 
 //------------------------delivery function----------------
@@ -60,18 +70,12 @@ function deliveryProduct(price){
     
 }
 
-//----------similar $180  function------------
-function cost180(item){
-    const itemCost = document.getElementById(item +'-cost');
-    itemCost.innerText = parseInt(itemCost.innerText) ;
-    itemCost.innerText = 180;
-    calc();
-}
-
-//---------similar $0 function---------
-function cost0(item){
-    const productCost = document.getElementById(item+'-cost');
-    productCost.innerText = parseInt(productCost.innerText) ;
-    productCost.innerText = 0; 
-    calc();
+//----------------------- Calculation-----------
+function calc(){
+const bestprice =parseInt(document.getElementById('best-price').innerText);
+const extraMemoryCost =parseInt(document.getElementById('memory-cost').innerText);
+const extraStorageCost =parseInt(document.getElementById('storage-cost').innerText);
+const deliveryCost =parseInt(document.getElementById('delivery-cost').innerText);
+let totalPrice =document.getElementById('total-price');
+return totalPrice.innerText= bestprice+extraMemoryCost+extraStorageCost+deliveryCost;
 }
